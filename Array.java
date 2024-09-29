@@ -1,22 +1,36 @@
-public class Array{
-    public static int BuyAndSellStock(int Prices[]){
-        int BuyPrice = Integer.MAX_VALUE;
-        int MaxProfit = 0;
-        for(int i=0 ; i<Prices.length ; i++){
-            if(BuyPrice <  Prices[i]){
-                int Profit = Prices[i] - BuyPrice;
-                MaxProfit = Math.max(MaxProfit , Profit);
+public class Array {
+    public static int binarySearch(int array[], int key) {
+        int start = 0;
+        int end = array.length - 1;
+
+        while (start <= end) {
+            int mid = start+end / 2;
+            if (array[mid] == key) {
+                return mid;
             }
-            else{
-                BuyPrice = Prices[i];
+            if (array[mid] < key) {
+                start = mid + 1;
+            }
+            else {
+                end = mid - 1;
             }
         }
+        return -1;
+    }
 
-        return MaxProfit;
+    public static void main(String[] args) {
+        int Array[] = {2, 5, 7, 12, 23, 34, 45, 56, 67, 89};
+        int key = 23;
+
+        
+        int result = binarySearch(Array, key);
+
+        if (result != -1) {
+            System.out.println("Element found at index: " + result);
+        } else {
+            System.out.println("Element not found.");
+        }
+       
+
     }
-    public static void main(String args[]){
-        int Prices[] = {2,1,4,5,3};
-        System.out.println(BuyAndSellStock(Prices));
-    }
-      
 }
